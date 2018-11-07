@@ -6,4 +6,5 @@ request.open('GET', 'https://chitter-backend-api.herokuapp.com/peeps', true);
 
 request.send()
 
-postElement.appendChild();
+ request.onload = function() {
+   }
