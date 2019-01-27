@@ -5,7 +5,9 @@
      return response.json()
      .then(function(response){
       var dataArray = response
+
       console.log(dataArray)
+
       dataArray.forEach( hash => {
         const peep = document.createElement('p');
         const author = document.createElement('p');
