@@ -1,6 +1,5 @@
 describe ('fakeapi', function() {
   it('stubs the api', function() {
-
     cy.server()
     cy.route({
       method: 'GET',
@@ -15,6 +14,5 @@ describe ('fakeapi', function() {
     cy.visit('http://localhost:8080/')
     cy.contains('Fake Post');
     cy.contains('-posted by Florence');
-
  })
 })

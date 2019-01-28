@@ -16,3 +16,7 @@ request.onload = function() {
     document.body.appendChild(author)
   })
 }
+
+$('#submit').click(function(){
+  $('#testingSubmit').text('Submit Clicked')
+})
