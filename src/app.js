@@ -5,9 +5,9 @@ request.open('GET', 'https://chitter-backend-api.herokuapp.com/peeps', true);
 request.send()
 
 request.onload = function() {
-   var dataArray = JSON.parse(this.responseText);
-   console.log(dataArray)
-   dataArray.forEach( hash => {
+  var dataArray = JSON.parse(this.responseText);
+  console.log(dataArray)
+  dataArray.forEach( hash => {
     const peep = document.createElement('p');
     const author = document.createElement('p');
     peep.innerHTML = hash.body
@@ -18,5 +18,21 @@ request.onload = function() {
 }
 
 $('#submit').click(function(){
-  $('#testingSubmit').text('Submit Clicked')
+  // username = $('#username').val();
+  // password = $('#password').val();
+  $.ajax({
+      url: 'https://chitter-backend-api.herokuapp.com/users',
+      dataType: 'json',
+      type: 'post',
+      contentType: 'application/json',
+      data: JSON.stringify( { "user": {"handle": $('#username').val(), "password": $('#password').val() }} ),
+      processData: false,
+      success: function(){
+        console.log('success')
+          $('#signupMessage').text('You have successfully signed up')
+      },
+      error: function(jqXhr, textStatus, errorThrown, responseText){
+        console.log(jqXhr, textStatus, errorThrown, responseText);
+      }
+   });
 })
