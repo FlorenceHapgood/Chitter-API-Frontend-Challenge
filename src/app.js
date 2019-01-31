@@ -18,8 +18,6 @@ request.onload = function() {
 }
 
 $('#submit').click(function(){
-  // username = $('#username').val();
-  // password = $('#password').val();
   $.ajax({
       url: 'https://chitter-backend-api.herokuapp.com/users',
       dataType: 'json',
@@ -31,8 +29,15 @@ $('#submit').click(function(){
         console.log('success')
           $('#signupMessage').text('You have successfully signed up')
       },
-      error: function(jqXhr, textStatus, errorThrown, responseText){
-        console.log(jqXhr, textStatus, errorThrown, responseText);
+      error: function(jqXHR) {
+        errorMessage(jqXHR)
       }
    });
 })
+
+function errorMessage(jqXHR){
+  var message = JSON.parse(jqXHR.responseText)
+  if (message.handle[0] === "has already been taken") {
+    $('#signupMessage').text("Handle has already been taken")
+  }
+}
