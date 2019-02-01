@@ -33,6 +33,23 @@ $('#submit').click(function(){
    });
 })
 
+$('#submit_1').click(function(){
+  $.ajax({
+    url: "https://chitter-backend-api.herokuapp.com/sessions",
+    dataType: 'json',
+    type: 'post',
+    contentType: 'application/json',
+    data: JSON.stringify({ "session": {"handle": $('#username_1').val(), "password": $('#password_1').val() }}),
+    processData:false,
+    success: function() {
+      $('#signupMessage').text('You are signed in');
+    },
+    error: function() {
+      console.log("Error with session signin")
+    }
+  })
+})
+
 function errorMessage(jqXHR){
   var message = JSON.parse(jqXHR.responseText)
   if (message.handle[0] === "has already been taken") {
