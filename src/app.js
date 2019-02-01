@@ -3,7 +3,6 @@ var request = new XMLHttpRequest();
 
 request.open('GET', 'https://chitter-backend-api.herokuapp.com/peeps', true);
 request.send()
-
 request.onload = function() {
   var dataArray = JSON.parse(this.responseText);
   console.log(dataArray)
@@ -26,7 +25,6 @@ $('#submit').click(function(){
       data: JSON.stringify( { "user": {"handle": $('#username').val(), "password": $('#password').val() }} ),
       processData: false,
       success: function(){
-        console.log('success')
           $('#signupMessage').text('You have successfully signed up')
       },
       error: function(jqXHR) {
