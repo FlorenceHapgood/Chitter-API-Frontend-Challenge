@@ -6,8 +6,8 @@ describe ('Homepage', function() {
 
   it('Has an error message if the user name is taken', function(){
     cy.visit('http://localhost:8080/')
-    cy.get('#username').type('qqq')
-    cy.get('#submit').click()
+    cy.get('#newUsername').type('qqq')
+    cy.get('#signUpSubmit').click()
     cy.contains('Handle has already been taken')
   })
 });

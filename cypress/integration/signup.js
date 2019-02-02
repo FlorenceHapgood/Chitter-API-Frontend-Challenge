@@ -1,5 +1,5 @@
-describe ('Successful Sign in', function() {
-  it('Successfully signs in the user', function() {
+describe ('Successful Sign up', function() {
+  it('Successfully signs up the user', function() {
     cy.server()
     cy.route({
       method: 'POST',
@@ -11,9 +11,9 @@ describe ('Successful Sign in', function() {
     })
 
     cy.visit('http://localhost:8080/')
-    cy.get('#username').type('fakeUsername')
-    cy.get('#password').type('fakePassword')
-    cy.get('#submit').click()
+    cy.get('#newUsername').type('fakeUsername')
+    cy.get('#newPassword').type('fakePassword')
+    cy.get('#signUpSubmit').click()
     cy.contains('You have successfully signed up')
  })
 
@@ -29,8 +29,8 @@ describe ('Successful Sign in', function() {
      })
 
      cy.visit('http://localhost:8080/')
-     cy.get('#username').type('jiolkjd')
-     cy.get('#submit').click()
+     cy.get('#newUsername').type('jiolkjd')
+     cy.get('#signUpSubmit').click()
      cy.contains('Handle has already been taken')
    })
 })

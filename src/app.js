@@ -16,16 +16,16 @@ request.onload = function() {
   })
 }
 
-$('#submit').click(function(){
+$('#signUpSubmit').click(function(){
   $.ajax({
       url: 'https://chitter-backend-api.herokuapp.com/users',
       dataType: 'json',
       type: 'post',
       contentType: 'application/json',
-      data: JSON.stringify( { "user": {"handle": $('#username').val(), "password": $('#password').val() }} ),
+      data: JSON.stringify( { "user": {"handle": $('#newUsername').val(), "password": $('#newPassword').val() }} ),
       processData: false,
       success: function(){
-          $('#signupMessage').text('You have successfully signed up')
+          $('#message').text('You have successfully signed up')
       },
       error: function(jqXHR) {
         errorMessage(jqXHR)
@@ -33,16 +33,16 @@ $('#submit').click(function(){
    });
 })
 
-$('#submit_1').click(function(){
+$('#signInSubmit').click(function(){
   $.ajax({
     url: "https://chitter-backend-api.herokuapp.com/sessions",
     dataType: 'json',
     type: 'post',
     contentType: 'application/json',
-    data: JSON.stringify({ "session": {"handle": $('#username_1').val(), "password": $('#password_1').val() }}),
+    data: JSON.stringify({ "session": {"handle": $('#username').val(), "password": $('#password').val() }}),
     processData:false,
     success: function() {
-      $('#signupMessage').text('You are signed in');
+      $('#message').text('You are signed in');
     },
     error: function() {
       console.log("Error with session signin")
@@ -53,6 +53,6 @@ $('#submit_1').click(function(){
 function errorMessage(jqXHR){
   var message = JSON.parse(jqXHR.responseText)
   if (message.handle[0] === "has already been taken") {
-    $('#signupMessage').text("Handle has already been taken")
+    $('#message').text("Handle has already been taken")
   }
 }
