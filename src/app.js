@@ -11,6 +11,8 @@ request.onload = function() {
     const author = document.createElement('p');
     peep.innerHTML = hash.body
     author.innerHTML = "-posted by " + hash.user.handle
+    // peep.id=('peepId') //for styling
+    // author.id=('authorId')
     document.body.appendChild(peep);
     document.body.appendChild(author)
   })
