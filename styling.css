@@ -4,7 +4,12 @@ body {
   background-color: lightblue;
 }
 
-
+p {
+  background-color: white;
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+}
 
 /* #peepID {
  outline-style: double;
