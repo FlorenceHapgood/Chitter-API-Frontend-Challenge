@@ -1,6 +1,12 @@
 describe ('New Session', function(){
   it ('successfully creates a new session for the user', function() {
     cy.server()
+    cy.route({
+      method: 'GET',
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      status: 200,
+      response: [],
+    })
 
     cy.route({
       method: 'POST',

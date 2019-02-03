@@ -2,6 +2,13 @@ describe ('Successful Sign up', function() {
   it('Successfully signs up the user', function() {
     cy.server()
     cy.route({
+      method: 'GET',
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      status: 200,
+      response: [],
+    })
+    
+    cy.route({
       method: 'POST',
       url: "https://chitter-backend-api.herokuapp.com/users",
       status: 200,
