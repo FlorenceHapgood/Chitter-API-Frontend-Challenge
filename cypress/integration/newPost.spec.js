@@ -1,5 +1,5 @@
 describe ('New Post', function(){
-  it ('successfully posts a post', function() {
+  it ('successfully posts a new peep', function() {
     cy.server()
     cy.visit('/')
     cy.get('#username').type('fff')
@@ -7,15 +7,16 @@ describe ('New Post', function(){
     cy.get('#signInSubmit').click()
     cy.contains('You are signed in')
 
-    // cy.route({
-    //   method: 'POST',
-    //   url: "https://chitter-backend-api.herokuapp.com/sessions",
-    //   status: 201,
-    //   response: [{
-    //     "user_id":774,
-    //     "session_key":"_2a_10_O4HuGHycq7gr5yjw_M1rDe"
-    //   }],
-    // })
+    cy.server()
+    cy.route({
+      method: 'POST',
+      url: "https://chitter-backend-api.herokuapp.com/peeps",
+      status: 201,
+      response: [],
+    })
 
+    cy.get('#newPeep').type('Spike is better than Angel')
+    cy.get('#peepSubmit').click()
+    cy.contains('Peep successfully posted')
   })
 })

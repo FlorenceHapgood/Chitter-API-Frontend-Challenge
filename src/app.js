@@ -35,6 +35,13 @@ $('#signUpSubmit').click(function(){
    });
 })
 
+function errorMessage(jqXHR){
+  var message = JSON.parse(jqXHR.responseText)
+  if (message.handle[0] === "has already been taken") {
+    $('#message').text("Handle has already been taken")
+  }
+}
+
 $('#signInSubmit').click(function(){
   $.ajax({
     url: "https://chitter-backend-api.herokuapp.com/sessions",
@@ -43,8 +50,12 @@ $('#signInSubmit').click(function(){
     contentType: 'application/json',
     data: JSON.stringify({ "session": {"handle": $('#username').val(), "password": $('#password').val() }}),
     processData:false,
-    success: function() {
+    success: function(jqXHR) {
+        // console.log(jqXHR)
+        // console.log(jqXHR.user_id)
+        // console.log(jqXHR.session_key)
       $('#message').text('You are signed in');
+      saveSessionInfo(jqXHR)
     },
     error: function() {
       console.log("Error with session signin")
@@ -52,9 +63,37 @@ $('#signInSubmit').click(function(){
   })
 })
 
-function errorMessage(jqXHR){
-  var message = JSON.parse(jqXHR.responseText)
-  if (message.handle[0] === "has already been taken") {
-    $('#message').text("Handle has already been taken")
-  }
+function saveSessionInfo(jqXHR){
+  console.log(jqXHR)
+  session_key = jqXHR.session_key
+
+  user_id = jqXHR.user_id
+
+  console.log('saved')
 }
+
+$('#peepSubmit').click(function(){
+
+  $.ajax({
+    url: "https://chitter-backend-api.herokuapp.com/peeps",
+    dataType: 'json',
+    type: 'post',
+   //  beforeSend : function(req) {
+   //     req.setRequestHeader('Authorization', "Basic " + btoa('_2a_10_iwYShni2AMNw378x7GAvVe'));
+   // },
+   headers: {
+       'Authorization': `Bearer ${session_key}`,
+   },
+
+    contentType: 'application/json',
+    data: JSON.stringify({ "peep": {"user_id": + user_id, "body": $('#newPeep').val() }}),
+    processData:false,
+    success: function() {
+      $('#message').text('Peep successfully posted');
+    },
+    error: function(jqXHR) {
+      console.log(jqXHR)
+      console.log("Error with posting")
+    }
+  })
+})
