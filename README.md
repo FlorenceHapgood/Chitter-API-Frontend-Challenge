@@ -42,8 +42,10 @@ To view the app at localhost:8080:
 ```
 $ node node_modules/http-server/bin/http-server
 
-![Screen Shot 2019-03-10 at 21 34 45](https://user-images.githubusercontent.com/42243785/54091810-83ef1400-437c-11e9-8d54-220b1790ab04.png)
 ```
+
+![Screen Shot 2019-03-10 at 21 34 45](https://user-images.githubusercontent.com/42243785/54091810-83ef1400-437c-11e9-8d54-220b1790ab04.png)
+
 
 ## Test
 
